@@ -31,10 +31,6 @@ jobs:
           elif [ -d "public" ]; then echo "dir=public" >> $GITHUB_OUTPUT;
           else echo "dir=." >> $GITHUB_OUTPUT; fi
 
-      - name: Prevent Search Engine Indexing
-        run: |
-          echo -e "\n/*\n  X-Robots-Tag: noindex" >> ${{ steps.dir.outputs.dir }}/_headers
-
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
